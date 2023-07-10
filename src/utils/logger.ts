@@ -1,6 +1,6 @@
 const leadingZero = (num: number) => `0${num}`.slice(-2);
 
-export default (msg: string, ...args) => {
+export default (msg: string, ...args: any) => {
   const date = new Date();
 
   const hrs = leadingZero(date.getHours());

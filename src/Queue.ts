@@ -6,21 +6,31 @@ export default class Queue {
     // This means we need to wrap it
     const task = new Promise<P>((resolve, reject) => {
       const taskWrapper = async () => {
+        console.log("starting task", p);
         const result = await p();
+
+        console.log("ending task");
         resolve(result);
       };
 
       this.items.push(taskWrapper);
     });
 
-    console.log("item length", this.items.length);
-
     return task;
   }
 
-  processItems() {
+  async processItems() {
+    // While loop to work through task list and allow better control
+    while (this.items.length > 0) {
+      // Grab first item (FIFO)
+
+      const task = this.items.shift();
+
+      // Wait for task to resolve before continue loop
+      await task!();
+    }
+
     this.items.forEach(async (task) => {
-      console.log("running task");
       await task();
     });
   }
