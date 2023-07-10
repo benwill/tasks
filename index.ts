@@ -1,5 +1,3 @@
-console.log("init");
-
 import Queue from "./src/Queue";
 import createTask from "./src/utils/createTask";
 
@@ -13,8 +11,8 @@ const promise1 = q.add(t1);
 const promise2 = q.add(t2);
 const promise3 = q.add(t3);
 
-q.processItems();
-
+// When promise 1 is done, lets kick off another task
 promise1.then((res) => {
-  console.log("finished", res);
+  const t4 = createTask("task 4", 1000);
+  const promise4 = q.add(t4);
 });

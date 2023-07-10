@@ -21,8 +21,6 @@ describe("Queue", () => {
     const result2 = q.add(task2);
     const result3 = q.add(task3);
 
-    q.processItems();
-
     const results = await Promise.all([result1, result2, result3]);
 
     expect(results).toEqual(["A", "B", "C"]);
@@ -39,8 +37,6 @@ describe("Queue", () => {
     const result1 = q.add(task1);
     const result2 = q.add(task2);
     const result3 = q.add(task3);
-
-    q.processItems();
 
     // Wait for all results before we check the logs
     // We should expect the start logs to always follow the end of the last task
