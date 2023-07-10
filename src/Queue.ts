@@ -20,6 +20,7 @@ export default class Queue {
 
   processItems() {
     this.items.forEach(async (task) => {
+      console.log("running task");
       await task();
     });
   }
